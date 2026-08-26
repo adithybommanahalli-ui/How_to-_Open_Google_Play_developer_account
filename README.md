@@ -12,7 +12,7 @@ This repository contains two HTML-based guides:
 
 A detailed interactive guide covering the account setup process, important requirements, and the steps needed to get started as a Google Play developer.
 
-[Open the main guide](./google-play-developer-account-guide.html)
+[Open the main guide](https://adithybommanahalli-ui.github.io/How_to-_Open_Google_Play_developer_account/google-play-developer-account-guide.html)
 
 ### 2. Google Play Setup Guide for PDF
 
