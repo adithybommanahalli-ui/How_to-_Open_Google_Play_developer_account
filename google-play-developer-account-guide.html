@@ -216,58 +216,221 @@
   .reveal.in{opacity:1; transform:none;}
 
   /* ---------- responsive ---------- */
+
+  /* ---- Tablet / small desktop ---- */
   @media (max-width:1000px){
     .wizard{grid-template-columns:1fr; gap:0; padding:0 20px 72px;}
-    .rail{position:sticky; top:0; z-index:20; height:auto; max-height:none; padding:12px 0; background:var(--page); border-bottom:1px solid var(--line);}
+    .rail{position:sticky; top:0; z-index:20; height:auto; max-height:none; padding:10px 0; background:var(--page); border-bottom:1px solid var(--line); box-shadow:0 2px 6px rgba(60,64,67,.08);}
     .brand,.acct,.rail-title{display:none;}
-    .steps-nav{display:flex; gap:6px; overflow-x:auto; padding:0 2px 6px; -webkit-overflow-scrolling:touch; scrollbar-width:none;}
+    .steps-nav{display:flex; gap:4px; overflow-x:auto; padding:0 4px 4px; -webkit-overflow-scrolling:touch; scrollbar-width:none;}
     .steps-nav::-webkit-scrollbar{display:none;}
     .steps-nav::before{display:none;}
-    .steps-nav a{flex-direction:column; gap:5px; font-size:.62rem; text-align:center; min-width:58px; padding:6px 4px;}
-    .steps-nav a span.lbl{max-width:56px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
-    .hero{padding-top:28px;}
+    .steps-nav a{flex-direction:column; gap:4px; font-size:.68rem; text-align:center; min-width:60px; padding:8px 6px; border-radius:10px;}
+    .steps-nav .marker{width:28px; height:28px; font-size:.75rem;}
+    .steps-nav a span.lbl{max-width:60px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+    .hero{padding-top:24px;}
   }
+
+  /* ---- Mobile landscape / larger phones ---- */
   @media (max-width:720px){
     .wizard{padding-right:16px; padding-left:16px;}
-    .hero{padding-top:24px;}
-    .hero h1{font-size:clamp(1.9rem,8vw,2.5rem);}
-    .hero .lede{font-size:1rem;}
-    .roadmap{padding:18px 16px 10px;}
-    .flow-pills{display:grid; grid-template-columns:minmax(0,1fr); gap:7px;}
+    .hero{padding-top:20px;}
+    .hero h1{font-size:clamp(1.7rem,7vw,2.3rem);}
+    .hero .lede{font-size:.95rem;}
+
+    /* stat strip: 2 per row */
+    .stat-strip{gap:10px;}
+    .stat{flex:1 1 calc(50% - 5px); min-width:0; padding:12px 14px;}
+    .stat .v{font-size:1.15rem;}
+
+    /* roadmap pills: vertical list */
+    .roadmap{padding:16px 14px 12px;}
+    .roadmap h2{font-size:.76rem; margin-bottom:12px;}
+    .flow-pills{display:flex; flex-direction:column; gap:6px;}
     .flow-pills .pill{width:100%; justify-content:flex-start;}
     .flow-pills .arrow{display:none;}
+
+    /* single-column for all two-column layouts */
     .fork,.compare,.branch,.shot{grid-template-columns:1fr;}
-    .step{grid-template-columns:40px minmax(0,1fr); gap:10px;}
-    .ghost-num{font-size:2rem;}
-    .step .body{padding:18px 16px 20px;}
-    .step h3{font-size:1.15rem;}
-    .step .gutter::before{top:44px;}
-    .stat{flex:1 1 40%; min-width:0; padding:12px 14px;}
-    .stat .v{font-size:1.2rem;}
-    .map{padding:22px 14px;}
-    .box{width:100%; padding:11px 13px;}
-    .do,.callout{font-size:.88rem;}
-    .browser-bar{padding:8px 10px;}
-    .browser-bar .url{margin-left:6px; padding:4px 9px;}
-  }
-  @media (max-width:420px){
-    .wizard{padding-right:12px; padding-left:12px; padding-bottom:56px;}
-    .rail{padding-top:8px; padding-bottom:8px;}
-    .steps-nav a{min-width:54px; font-size:.58rem;}
-    .steps-nav a span.lbl{max-width:52px;}
-    .eyebrow{font-size:.63rem; letter-spacing:.12em;}
-    .hero h1{font-size:1.85rem;}
-    .stat-strip{gap:8px;}
-    .stat{flex-basis:calc(50% - 4px);}
-    .stat .k{font-size:.64rem;}
-    .stat .v{font-size:1.08rem;}
-    .stat .v small{font-size:.7rem;}
-    .step{grid-template-columns:32px minmax(0,1fr); gap:8px;}
-    .ghost-num{font-size:1.55rem;}
-    .step .body{padding:16px 13px 18px;}
+
+    /* flow map */
+    .map{padding:18px 12px;}
+    .fork{gap:12px;}
+    .path{padding:14px;}
+    .box{width:100%; padding:10px 12px; font-size:.9rem;}
+    .box small{font-size:.75rem;}
+
+    /* compare cards */
+    .compare{gap:14px;}
+    .card .head{padding:14px 16px; gap:10px;}
+    .card .head .b{width:30px; height:30px; border-radius:8px;}
+    .card .head h3{font-size:1rem;}
+    .card ul{padding:12px 16px 14px 16px;}
+    .card ul li{padding:5px 0 5px 22px; font-size:.86rem;}
+
+    /* step spine */
+    .step{grid-template-columns:36px minmax(0,1fr); gap:10px;}
+    .ghost-num{font-size:1.8rem;}
+    .step .body{padding:16px 14px 18px;}
+    .step .body:hover{box-shadow:var(--shadow-sm);}
+    .step h3{font-size:1.1rem;}
+    .step .gutter::before{top:40px;}
+
+    /* action items and callouts */
+    .do{padding:10px 12px; font-size:.86rem; gap:8px;}
+    .callout{padding:10px 12px; font-size:.86rem; gap:10px;}
     .notes{padding-left:18px; font-size:.88rem;}
-    .finish{padding:22px 16px;}
+    .notes li{margin:5px 0;}
+
+    /* screenshot annotations */
+    .shot{gap:14px;}
+    .annos{gap:8px;}
+    .anno{padding:9px 11px; font-size:.82rem; gap:8px;}
+    .anno .tick{width:18px; height:18px; font-size:.65rem;}
+
+    /* browser mockups */
+    .browser-bar{padding:7px 10px;}
+    .browser-bar .url{margin-left:6px; padding:3px 8px; font-size:.7rem;}
+    .browser-bar i{width:8px; height:8px;}
+
+    /* branch section */
+    .branch{gap:14px; margin-top:16px;}
+    .branch .sub-h{font-size:.92rem; gap:8px;}
+    .branch .sub-h .b{width:22px; height:22px; font-size:.72rem; border-radius:6px;}
+    .branch .cap{font-size:.8rem; margin-top:6px;}
+
+    /* prereqs */
+    .prereq{grid-template-columns:1fr; gap:10px;}
+    .req{padding:14px; gap:10px;}
+    .req .ic{width:36px; height:36px; border-radius:8px;}
+    .req .ic svg{width:18px; height:18px;}
+    .req h4{font-size:.92rem;}
+    .req p{font-size:.82rem;}
+
+    /* finish */
+    .finish{padding:22px 18px;}
+    .finish h2{font-size:1.3rem;}
+    .finish ol{padding-left:18px;}
+    .finish ol li{margin:6px 0; font-size:.9rem;}
+
+    /* footer */
+    footer{font-size:.76rem; margin-top:36px;}
   }
+
+  /* ---- Standard phones ---- */
+  @media (max-width:480px){
+    .wizard{padding-right:14px; padding-left:14px; padding-bottom:60px;}
+    .rail{padding-top:8px; padding-bottom:6px;}
+    .steps-nav{gap:2px; padding:0 2px 2px;}
+    .steps-nav a{min-width:52px; padding:6px 4px; font-size:.62rem;}
+    .steps-nav .marker{width:24px; height:24px; font-size:.7rem;}
+    .steps-nav a span.lbl{max-width:50px; font-size:.58rem;}
+
+    .eyebrow{font-size:.62rem; letter-spacing:.1em;}
+    .hero h1{font-size:1.6rem; letter-spacing:-.02em;}
+    .hero .lede{font-size:.9rem;}
+
+    .stat-strip{gap:8px;}
+    .stat{padding:10px 12px;}
+    .stat .k{font-size:.64rem;}
+    .stat .v{font-size:1.05rem;}
+    .stat .v small{font-size:.68rem;}
+
+    .roadmap{padding:14px 12px 10px; border-radius:var(--radius-sm);}
+    .flow-pills .pill{padding:6px 10px; font-size:.78rem;}
+    .flow-pills .pill .n{width:16px; height:16px; font-size:.62rem;}
+
+    .block > h2{font-size:1.3rem;}
+    .block > .sub{font-size:.88rem;}
+
+    .step{grid-template-columns:30px minmax(0,1fr); gap:6px; margin-top:12px;}
+    .ghost-num{font-size:1.5rem;}
+    .step .body{padding:14px 12px 16px; border-radius:var(--radius-sm);}
+    .step h3{font-size:1.02rem;}
+    .step .gutter::before{top:36px; bottom:-32px;}
+
+    .do{padding:9px 10px; font-size:.84rem; border-radius:8px;}
+    .do svg{width:16px; height:16px;}
+    .callout{padding:9px 10px; font-size:.84rem; border-radius:8px;}
+    .callout svg{width:17px; height:17px;}
+    .notes{padding-left:16px; font-size:.84rem;}
+
+    .map{padding:16px 10px; border-radius:var(--radius-sm);}
+    .fork{gap:10px;}
+    .path{padding:12px;}
+    .path ul{font-size:.82rem; padding-left:16px;}
+    .box{padding:9px 10px; font-size:.84rem; border-radius:10px;}
+
+    .compare{gap:10px;}
+    .card{border-radius:var(--radius-sm);}
+    .card .head{padding:12px 14px;}
+    .card .head .b{width:28px; height:28px;}
+    .card .head h3{font-size:.94rem;}
+    .card .head small{font-size:.72rem;}
+    .card ul{padding:10px 14px 12px 14px;}
+    .card ul li{padding:4px 0 4px 20px; font-size:.82rem;}
+
+    .shot{gap:12px;}
+    .annos{gap:6px;}
+    .anno{padding:8px 10px; font-size:.8rem; border-radius:8px;}
+    .anno .tick{width:17px; height:17px; font-size:.6rem;}
+
+    .browser{border-radius:10px;}
+    .browser-bar{padding:6px 8px;}
+    .browser-bar i{width:7px; height:7px;}
+    .browser-bar .url{padding:3px 7px; font-size:.66rem;}
+
+    .branch{gap:12px; margin-top:14px;}
+    .branch .sub-h{font-size:.88rem;}
+    .branch .browser{border-radius:10px;}
+    .branch .browser + .browser{margin-top:10px;}
+
+    .prereq{gap:8px;}
+    .req{padding:12px; gap:8px; border-radius:8px;}
+    .req .ic{width:32px; height:32px; border-radius:7px;}
+    .req .ic svg{width:16px; height:16px;}
+    .req h4{font-size:.88rem;}
+    .req p{font-size:.78rem; margin-top:2px;}
+
+    .finish{padding:18px 14px; border-radius:var(--radius-sm);}
+    .finish .badge{font-size:.8rem; padding:5px 12px;}
+    .finish h2{font-size:1.2rem; margin-top:10px;}
+    .finish ol{padding-left:16px;}
+    .finish ol li{font-size:.86rem; margin:5px 0;}
+
+    footer{margin-top:28px; padding-top:16px; font-size:.72rem;}
+    footer p{line-height:1.5;}
+  }
+
+  /* ---- Small phones ---- */
+  @media (max-width:360px){
+    .wizard{padding-right:10px; padding-left:10px; padding-bottom:48px;}
+    .rail{padding-top:6px; padding-bottom:4px;}
+    .steps-nav a{min-width:46px; padding:5px 3px; font-size:.55rem;}
+    .steps-nav .marker{width:22px; height:22px; font-size:.64rem;}
+    .steps-nav a span.lbl{max-width:44px;}
+
+    .hero h1{font-size:1.4rem;}
+    .hero .lede{font-size:.85rem;}
+
+    .stat{flex-basis:100%; padding:10px;}
+    .stat .k{font-size:.6rem;}
+    .stat .v{font-size:1rem;}
+
+    .block > h2{font-size:1.15rem;}
+    .step{grid-template-columns:26px minmax(0,1fr); gap:5px;}
+    .ghost-num{font-size:1.3rem;}
+    .step .body{padding:12px 10px 14px;}
+    .step h3{font-size:.96rem;}
+
+    .do{font-size:.8rem; padding:8px 9px;}
+    .callout{font-size:.8rem; padding:8px 9px;}
+    .notes{font-size:.8rem; padding-left:14px;}
+
+    .finish{padding:16px 12px;}
+    .finish h2{font-size:1.1rem;}
+  }
+
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto;}
     .reveal{opacity:1; transform:none; transition:none;}
