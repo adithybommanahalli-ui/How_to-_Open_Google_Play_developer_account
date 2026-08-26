@@ -152,8 +152,10 @@
   .step .body{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow-sm); padding:22px 24px 24px; margin-bottom:24px;}
   .step .body:hover{box-shadow:var(--shadow-md);}
   .step h3{font-size:1.28rem; font-weight:700;}
-  .do{display:flex; align-items:flex-start; gap:10px; background:var(--blue-050); border-radius:10px; padding:11px 14px; margin:12px 0 6px; font-weight:600; color:var(--blue-700); font-size:.95rem;}
-  .do svg{width:19px;height:19px;flex:none;margin-top:1px;}
+  .do{display:flex; align-items:flex-start; gap:10px; background:var(--blue-050); border-radius:10px; padding:11px 14px; margin:12px 0 6px; font-weight:600; color:var(--blue-700); font-size:.95rem; line-height:1.45;}
+  .do svg{width:19px;height:19px;flex:none;margin-top:2px;}
+  .do .do-txt{flex:1; min-width:0; color:var(--blue-700);}
+  .do .do-txt b{color:var(--blue-700);}
   .notes{margin:12px 0 0; padding-left:20px; color:var(--slate); font-size:.94rem;}
   .notes li{margin:6px 0;}
   .notes b{color:var(--ink);}
@@ -217,7 +219,7 @@
 
   /* ---------- responsive ---------- */
 
-  /* ---- Tablet / small desktop ---- */
+  /* ---- Tablet / small desktop (<= 1000px) ---- */
   @media (max-width:1000px){
     .wizard{grid-template-columns:1fr; gap:0; padding:0 20px 72px;}
     .rail{position:sticky; top:0; z-index:20; height:auto; max-height:none; padding:10px 0; background:var(--page); border-bottom:1px solid var(--line); box-shadow:0 2px 6px rgba(60,64,67,.08);}
@@ -231,16 +233,16 @@
     .hero{padding-top:24px;}
   }
 
-  /* ---- Mobile landscape / larger phones ---- */
+  /* ---- Mobile landscape / larger phones (<= 720px) ---- */
   @media (max-width:720px){
-    .wizard{padding-right:16px; padding-left:16px;}
+    .wizard{padding-right:16px; padding-left:16px; padding-bottom:60px;}
     .hero{padding-top:20px;}
     .hero h1{font-size:clamp(1.7rem,7vw,2.3rem);}
     .hero .lede{font-size:.95rem;}
 
-    /* stat strip: 2 per row */
-    .stat-strip{gap:10px;}
-    .stat{flex:1 1 calc(50% - 5px); min-width:0; padding:12px 14px;}
+    /* stat strip */
+    .stat-strip{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+    .stat{padding:12px 14px; min-width:0;}
     .stat .v{font-size:1.15rem;}
 
     /* roadmap pills: vertical list */
@@ -251,7 +253,7 @@
     .flow-pills .arrow{display:none;}
 
     /* single-column for all two-column layouts */
-    .fork,.compare,.branch,.shot{grid-template-columns:1fr;}
+    .fork,.compare,.branch,.shot{grid-template-columns:1fr; gap:14px;}
 
     /* flow map */
     .map{padding:18px 12px;}
@@ -268,17 +270,19 @@
     .card ul{padding:12px 16px 14px 16px;}
     .card ul li{padding:5px 0 5px 22px; font-size:.86rem;}
 
-    /* step spine */
-    .step{grid-template-columns:36px minmax(0,1fr); gap:10px;}
-    .ghost-num{font-size:1.8rem;}
-    .step .body{padding:16px 14px 18px;}
-    .step .body:hover{box-shadow:var(--shadow-sm);}
-    .step h3{font-size:1.1rem;}
-    .step .gutter::before{top:40px;}
+    /* STEP SPINE: Full-width cards with step header badge on mobile */
+    .step{display:block; margin-top:22px;}
+    .step .gutter{display:flex; align-items:center; gap:8px; margin-bottom:10px; justify-content:flex-start;}
+    .step .gutter::before{display:none;}
+    .ghost-num{font-size:1.5rem; line-height:1; padding-top:0; display:inline-flex; align-items:center;}
+    .ghost-num::before{content:"STEP "; font-size:.72rem; font-weight:800; letter-spacing:.12em; color:var(--blue); margin-right:4px;}
+    .step .body{padding:18px 16px 20px; width:100%; margin-bottom:20px; box-sizing:border-box;}
+    .step h3{font-size:1.15rem;}
 
     /* action items and callouts */
-    .do{padding:10px 12px; font-size:.86rem; gap:8px;}
-    .callout{padding:10px 12px; font-size:.86rem; gap:10px;}
+    .do{padding:11px 13px; font-size:.88rem; gap:10px;}
+    .callout{padding:11px 13px; font-size:.88rem; gap:10px;}
+    .callout div{flex:1; min-width:0;}
     .notes{padding-left:18px; font-size:.88rem;}
     .notes li{margin:5px 0;}
 
@@ -286,9 +290,11 @@
     .shot{gap:14px;}
     .annos{gap:8px;}
     .anno{padding:9px 11px; font-size:.82rem; gap:8px;}
+    .anno .txt{flex:1; min-width:0;}
     .anno .tick{width:18px; height:18px; font-size:.65rem;}
 
     /* browser mockups */
+    .browser{width:100%;}
     .browser-bar{padding:7px 10px;}
     .browser-bar .url{margin-left:6px; padding:3px 8px; font-size:.7rem;}
     .browser-bar i{width:8px; height:8px;}
@@ -317,72 +323,70 @@
     footer{font-size:.76rem; margin-top:36px;}
   }
 
-  /* ---- Standard phones ---- */
+  /* ---- Standard phones (<= 480px) ---- */
   @media (max-width:480px){
-    .wizard{padding-right:14px; padding-left:14px; padding-bottom:60px;}
+    .wizard{padding-right:12px; padding-left:12px; padding-bottom:50px;}
     .rail{padding-top:8px; padding-bottom:6px;}
     .steps-nav{gap:2px; padding:0 2px 2px;}
-    .steps-nav a{min-width:52px; padding:6px 4px; font-size:.62rem;}
-    .steps-nav .marker{width:24px; height:24px; font-size:.7rem;}
-    .steps-nav a span.lbl{max-width:50px; font-size:.58rem;}
+    .steps-nav a{min-width:50px; padding:6px 4px; font-size:.6rem;}
+    .steps-nav .marker{width:24px; height:24px; font-size:.68rem;}
+    .steps-nav a span.lbl{max-width:48px; font-size:.56rem;}
 
     .eyebrow{font-size:.62rem; letter-spacing:.1em;}
-    .hero h1{font-size:1.6rem; letter-spacing:-.02em;}
-    .hero .lede{font-size:.9rem;}
+    .hero h1{font-size:1.55rem; letter-spacing:-.02em;}
+    .hero .lede{font-size:.88rem;}
 
     .stat-strip{gap:8px;}
     .stat{padding:10px 12px;}
-    .stat .k{font-size:.64rem;}
-    .stat .v{font-size:1.05rem;}
+    .stat .k{font-size:.62rem;}
+    .stat .v{font-size:1.02rem;}
     .stat .v small{font-size:.68rem;}
 
     .roadmap{padding:14px 12px 10px; border-radius:var(--radius-sm);}
-    .flow-pills{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px;}
-    .flow-pills .pill{padding:6px 9px; font-size:.75rem;}
+    .flow-pills .pill{padding:6px 10px; font-size:.78rem;}
     .flow-pills .pill .n{width:16px; height:16px; font-size:.62rem;}
 
-    .block > h2{font-size:1.3rem;}
-    .block > .sub{font-size:.88rem;}
+    .block > h2{font-size:1.25rem;}
+    .block > .sub{font-size:.86rem;}
 
-    .step{grid-template-columns:30px minmax(0,1fr); gap:6px; margin-top:12px;}
-    .ghost-num{font-size:1.5rem;}
-    .step .body{padding:14px 12px 16px; border-radius:var(--radius-sm);}
-    .step h3{font-size:1.02rem;}
-    .step .gutter::before{top:36px; bottom:-32px;}
+    .step{margin-top:18px;}
+    .ghost-num{font-size:1.35rem;}
+    .step .body{padding:14px 12px 16px; border-radius:var(--radius-sm); margin-bottom:16px;}
+    .step h3{font-size:1.05rem;}
 
-    .do{padding:9px 10px; font-size:.84rem; border-radius:8px;}
+    .do{padding:9px 10px; font-size:.82rem; border-radius:8px;}
     .do svg{width:16px; height:16px;}
-    .callout{padding:9px 10px; font-size:.84rem; border-radius:8px;}
-    .callout svg{width:17px; height:17px;}
-    .notes{padding-left:16px; font-size:.84rem;}
+    .callout{padding:9px 10px; font-size:.82rem; border-radius:8px;}
+    .callout svg{width:16px; height:16px;}
+    .notes{padding-left:16px; font-size:.82rem;}
 
     .map{padding:16px 10px; border-radius:var(--radius-sm);}
     .fork{gap:10px;}
     .path{padding:12px;}
     .path ul{font-size:.82rem; padding-left:16px;}
-    .box{padding:9px 10px; font-size:.84rem; border-radius:10px;}
+    .box{padding:9px 10px; font-size:.82rem; border-radius:10px;}
 
     .compare{gap:10px;}
     .card{border-radius:var(--radius-sm);}
     .card .head{padding:12px 14px;}
     .card .head .b{width:28px; height:28px;}
-    .card .head h3{font-size:.94rem;}
+    .card .head h3{font-size:.92rem;}
     .card .head small{font-size:.72rem;}
     .card ul{padding:10px 14px 12px 14px;}
     .card ul li{padding:4px 0 4px 20px; font-size:.82rem;}
 
     .shot{gap:12px;}
     .annos{gap:6px;}
-    .anno{padding:8px 10px; font-size:.8rem; border-radius:8px;}
+    .anno{padding:8px 10px; font-size:.78rem; border-radius:8px;}
     .anno .tick{width:17px; height:17px; font-size:.6rem;}
 
     .browser{border-radius:10px;}
     .browser-bar{padding:6px 8px;}
     .browser-bar i{width:7px; height:7px;}
-    .browser-bar .url{padding:3px 7px; font-size:.66rem;}
+    .browser-bar .url{padding:3px 7px; font-size:.65rem;}
 
     .branch{gap:12px; margin-top:14px;}
-    .branch .sub-h{font-size:.88rem;}
+    .branch .sub-h{font-size:.86rem;}
     .branch .browser{border-radius:10px;}
     .branch .browser + .browser{margin-top:10px;}
 
@@ -390,46 +394,46 @@
     .req{padding:12px; gap:8px; border-radius:8px;}
     .req .ic{width:32px; height:32px; border-radius:7px;}
     .req .ic svg{width:16px; height:16px;}
-    .req h4{font-size:.88rem;}
+    .req h4{font-size:.86rem;}
     .req p{font-size:.78rem; margin-top:2px;}
 
     .finish{padding:18px 14px; border-radius:var(--radius-sm);}
-    .finish .badge{font-size:.8rem; padding:5px 12px;}
-    .finish h2{font-size:1.2rem; margin-top:10px;}
+    .finish .badge{font-size:.78rem; padding:5px 12px;}
+    .finish h2{font-size:1.18rem; margin-top:10px;}
     .finish ol{padding-left:16px;}
-    .finish ol li{font-size:.86rem; margin:5px 0;}
+    .finish ol li{font-size:.84rem; margin:5px 0;}
 
     footer{margin-top:28px; padding-top:16px; font-size:.72rem;}
     footer p{line-height:1.5;}
   }
 
-  /* ---- Small phones ---- */
+  /* ---- Small phones (<= 360px) ---- */
   @media (max-width:360px){
-    .wizard{padding-right:10px; padding-left:10px; padding-bottom:48px;}
+    .wizard{padding-right:8px; padding-left:8px; padding-bottom:44px;}
     .rail{padding-top:6px; padding-bottom:4px;}
-    .steps-nav a{min-width:40px; padding:5px 3px; font-size:0;}
-    .steps-nav .marker{width:22px; height:22px; font-size:.64rem;}
-    .steps-nav a span.lbl{display:none;}
+    .steps-nav a{min-width:44px; padding:5px 2px; font-size:.54rem;}
+    .steps-nav .marker{width:22px; height:22px; font-size:.62rem;}
+    .steps-nav a span.lbl{max-width:42px;}
 
-    .hero h1{font-size:1.4rem;}
-    .hero .lede{font-size:.85rem;}
+    .hero h1{font-size:1.35rem;}
+    .hero .lede{font-size:.82rem;}
 
-    .stat{flex-basis:calc(50% - 4px); padding:10px;}
-    .stat .k{font-size:.6rem;}
-    .stat .v{font-size:1rem;}
+    .stat-strip{grid-template-columns:1fr;}
+    .stat{padding:10px;}
+    .stat .k{font-size:.58rem;}
+    .stat .v{font-size:.98rem;}
 
-    .block > h2{font-size:1.15rem;}
-    .step{grid-template-columns:26px minmax(0,1fr); gap:5px;}
-    .ghost-num{font-size:1.3rem;}
+    .block > h2{font-size:1.1rem;}
+    .ghost-num{font-size:1.2rem;}
     .step .body{padding:12px 10px 14px;}
-    .step h3{font-size:.96rem;}
+    .step h3{font-size:.94rem;}
 
-    .do{font-size:.8rem; padding:8px 9px;}
-    .callout{font-size:.8rem; padding:8px 9px;}
-    .notes{font-size:.8rem; padding-left:14px;}
+    .do{font-size:.78rem; padding:8px;}
+    .callout{font-size:.78rem; padding:8px;}
+    .notes{font-size:.78rem; padding-left:14px;}
 
     .finish{padding:16px 12px;}
-    .finish h2{font-size:1.1rem;}
+    .finish h2{font-size:1.05rem;}
   }
 
   @media (prefers-reduced-motion:reduce){
@@ -613,7 +617,7 @@
         <h3>Choose an account type</h3>
         <div class="do">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
-          Pick <b>An organisation</b> or <b>Yourself</b>, then click <b>Get started</b>.
+          <div class="do-txt">Pick <b>An organisation</b> or <b>Yourself</b>, then click <b>Get started</b>.</div>
         </div>
         <ul class="notes">
           <li>The Google account in the top-left chip <b>will own this developer account</b> — and it can't be changed later, so pick the right one now.</li>
@@ -670,7 +674,7 @@
         <h3>Review “What you'll need”</h3>
         <div class="do">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
-          Read the checklist so nothing stops you mid-way, then click <b>Continue</b>.
+          <div class="do-txt">Read the checklist so nothing stops you mid-way, then click <b>Continue</b>.</div>
         </div>
         <ul class="notes">
           <li><b>Email for your Developer Profile</b> — public, verified with a code.</li>
@@ -699,7 +703,7 @@
         <h3>Android developer identity</h3>
         <div class="do">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
-          Just read this screen and click <b>Next</b> — there's nothing to type here.
+          <div class="do-txt">Just read this screen and click <b>Next</b> — there's nothing to type here.</div>
         </div>
         <ul class="notes">
           <li>Google reuses information you're already giving — your <b>legal name</b>, <b>legal address</b> and <b>website</b> — to meet Android developer verification.</li>
@@ -726,7 +730,7 @@
         <h3>Developer name</h3>
         <div class="do">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
-          Type the <b>public developer name</b> that will appear under your apps, then click <b>Next</b>.
+          <div class="do-txt">Type the <b>public developer name</b> that will appear under your apps, then click <b>Next</b>.</div>
         </div>
         <ul class="notes">
           <li>This is the name shoppers see as the app's developer — your own name or a brand.</li>
@@ -746,7 +750,7 @@
         <h3>Link a payments profile</h3>
         <div class="do">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
-          Click <b>Create or select payments profile</b>, complete it, then <b>Next</b>.
+          <div class="do-txt">Click <b>Create or select payments profile</b>, complete it, then <b>Next</b>.</div>
         </div>
         <ul class="notes">
           <li>A <b>Google payments profile</b> is used across Google products to confirm your legal name and address.</li>
@@ -774,7 +778,7 @@
         <h3>Public Developer Profile</h3>
         <div class="do">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
-          Confirm your details, set the public developer email, tick the acknowledgement, then <b>Next</b>.
+          <div class="do-txt">Confirm your details, set the public developer email, tick the acknowledgement, then <b>Next</b>.</div>
         </div>
         <ul class="notes">
           <li>Your <b>legal name</b> and <b>country</b> are confirmed here (e.g. India).</li>
@@ -803,7 +807,7 @@
         <h3>About you</h3>
         <div class="do">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
-          Optionally describe your experience, answer the “other accounts” question, then <b>Next</b>.
+          <div class="do-txt">Optionally describe your experience, answer the “other accounts” question, then <b>Next</b>.</div>
         </div>
         <ul class="notes">
           <li>The experience box is <b>only visible to you</b> — a sentence or two is fine, or leave it blank.</li>
@@ -831,7 +835,7 @@
         <h3>Apps</h3>
         <div class="do">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
-          Answer a few planning questions about your apps, then <b>Next</b>.
+          <div class="do-txt">Answer a few planning questions about your apps, then <b>Next</b>.</div>
         </div>
         <ul class="notes">
           <li><b>How many apps</b> you plan to publish (a rough estimate is fine — it doesn't limit you).</li>
@@ -860,7 +864,7 @@
         <h3>How Google contacts you</h3>
         <div class="do">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
-          Enter your private contact details, then <b>Next</b>.
+          <div class="do-txt">Enter your private contact details, then <b>Next</b>.</div>
         </div>
         <ul class="notes">
           <li><b>Contact name</b>, <b>contact email</b> (verify it), <b>preferred language</b>, and <b>phone number</b> with country code.</li>
@@ -888,7 +892,7 @@
         <h3>Accept the Terms</h3>
         <div class="do">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
-          Tick the two required agreements, then click <b>Create account and pay</b>.
+          <div class="do-txt">Tick the two required agreements, then click <b>Create account and pay</b>.</div>
         </div>
         <ul class="notes">
           <li>Tick the <b>Developer Distribution Agreement</b> (this also confirms you're 18+).</li>
@@ -921,7 +925,7 @@
         <h3>Pay the one-time US$25 fee</h3>
         <div class="do">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
-          Click <b>Add credit or debit card</b>, enter your card, and complete the US$25 payment.
+          <div class="do-txt">Click <b>Add credit or debit card</b>, enter your card, and complete the US$25 payment.</div>
         </div>
         <ul class="notes">
           <li>It's a <b>one-time registration fee</b> — not a subscription — saved to your Google Account.</li>
