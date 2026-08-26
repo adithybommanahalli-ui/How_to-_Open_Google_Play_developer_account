@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Set up a Google Play Developer Account — printable guide</title>
+<style>
+  :root{
+    color-scheme: light;
+    --blue:#1a73e8; --ink:#202124; --slate:#3c4043; --grey:#5f6368; --grey-light:#80868b;
+    --line:#d5d9de; --line-soft:#e8eaed;
+    --green:#188038; --green-bg:#e6f4ea;
+    --yellow-bg:#fef7e0; --yellow-ink:#8a4b00;
+    --red-bg:#fce8e6; --red-ink:#a50e0e;
+    --blue-bg:#e8f0fe;
+    --sans:"Segoe UI",Roboto,-apple-system,system-ui,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:#eceff3; color:var(--slate); font-family:var(--sans); font-size:11pt; line-height:1.5;}
+  .page{max-width:210mm; margin:0 auto; background:#fff; padding:16mm 15mm; box-shadow:0 1px 8px rgba(0,0,0,.12);}
+  h1,h2,h3{color:var(--ink); margin:0; line-height:1.2;}
+  p{margin:0 0 .5em;}
+  a{color:var(--blue);}
+
+  /* on-screen instruction banner — hidden in the printed PDF */
+  .howto{max-width:210mm; margin:14px auto; background:#0b57d0; color:#fff; border-radius:10px; padding:14px 18px; font-size:10.5pt; line-height:1.45;}
+  .howto b{color:#fff;}
+  .howto kbd{background:#fff; color:#0b57d0; border-radius:4px; padding:1px 6px; font-weight:700; font-family:inherit; font-size:9.5pt;}
+
+  /* header */
+  .eyebrow{font-size:8.5pt; letter-spacing:.14em; text-transform:uppercase; color:var(--blue); font-weight:700;}
+  h1{font-size:24pt; font-weight:800; letter-spacing:-.02em; margin:6px 0 4px;}
+  .lede{color:var(--grey); font-size:11.5pt; max-width:60ch;}
+  .facts{display:flex; flex-wrap:wrap; gap:8px; margin:14px 0 0; padding:0; list-style:none;}
+  .facts li{border:1px solid var(--line); border-radius:8px; padding:7px 12px; font-size:9.5pt;}
+  .facts li b{display:block; color:var(--ink); font-size:12pt; font-weight:800; margin-top:1px;}
+  .facts li span{color:var(--grey-light); text-transform:uppercase; letter-spacing:.08em; font-size:7.5pt; font-weight:700;}
+  .facts li.fee{border-color:#bcd3fb; background:#f4f8ff;} .facts li.fee b{color:#1558c0;}
+
+  .rule{border:0; border-top:1px solid var(--line); margin:20px 0;}
+
+  h2.sec{font-size:14pt; font-weight:800; letter-spacing:-.01em; margin:0 0 4px;}
+  .sec-sub{color:var(--grey); font-size:10pt; margin:0 0 12px;}
+
+  /* prerequisites */
+  .prereq{margin:0; padding:0; list-style:none; columns:2; column-gap:22px;}
+  .prereq li{break-inside:avoid; margin:0 0 8px; padding-left:20px; position:relative; font-size:10pt;}
+  .prereq li::before{content:""; position:absolute; left:0; top:6px; width:9px; height:9px; border-radius:2px; background:var(--blue);}
+  .prereq li b{color:var(--ink);}
+
+  /* account type choice */
+  .choice{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  .opt{border:1px solid var(--line); border-radius:10px; padding:12px 14px; break-inside:avoid;}
+  .opt.self{border-color:#a8d5b5; background:#f6fbf8;}
+  .opt.org{border-color:#f0d38a; background:#fffdf6;}
+  .opt h3{font-size:11.5pt; display:flex; align-items:center; gap:8px;}
+  .opt h3 .tag{font-size:8pt; font-weight:800; color:#fff; border-radius:5px; padding:2px 7px;}
+  .opt.self h3 .tag{background:var(--green);} .opt.org h3 .tag{background:#c9931f;}
+  .opt ul{margin:8px 0 0; padding-left:16px; font-size:9.5pt;}
+  .opt ul li{margin:3px 0;}
+  .opt b{color:var(--ink);}
+
+  /* steps */
+  .step{border-top:1px solid var(--line-soft); padding-top:14px; margin-top:16px; break-inside:avoid;}
+  .step-head{display:flex; align-items:center; gap:10px; margin-bottom:6px;}
+  .num{flex:none; width:26px; height:26px; border-radius:50%; background:var(--blue); color:#fff; font-weight:800; font-size:11pt; display:grid; place-items:center;}
+  .num.pay{background:var(--green);}
+  .step-head h3{font-size:13pt; font-weight:700;}
+  .action{display:flex; gap:8px; align-items:baseline; background:var(--blue-bg); border-radius:7px; padding:8px 11px; font-size:10pt; color:#1558c0; font-weight:600; margin:6px 0;}
+  .action .arw{font-weight:800;}
+  ul.notes{margin:6px 0 0; padding-left:18px; font-size:9.8pt;}
+  ul.notes li{margin:3px 0;}
+  ul.notes b{color:var(--ink);}
+
+  figure{margin:11px 0 0; break-inside:avoid;}
+  figure img{display:block; width:100%; max-height:96mm; object-fit:contain; object-position:left top; border:1px solid var(--line); border-radius:6px; background:#fbfbfc;}
+  figcaption{font-size:8.8pt; color:var(--grey); margin-top:5px;}
+  figcaption b{color:var(--ink);}
+  figcaption .arw{color:var(--blue); font-weight:800;}
+  .imgnote{display:none; font-size:9pt; color:var(--red-ink); border:1px dashed #e1a7a3; background:var(--red-bg); border-radius:6px; padding:8px 10px; margin-top:8px;}
+
+  /* sub figures inside step 1 */
+  .subgrid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:12px;}
+  .sub{break-inside:avoid;}
+  .sub h4{font-size:10pt; color:var(--ink); margin:0 0 6px; display:flex; align-items:center; gap:7px;}
+  .sub h4 .tag{font-size:7.5pt; font-weight:800; color:#fff; border-radius:5px; padding:2px 7px;}
+  .sub.self h4 .tag{background:var(--green);} .sub.org h4 .tag{background:#c9931f;}
+  .sub figure{margin-top:0;}
+  .sub figure img{max-height:60mm;}
+  .sub figure + figure{margin-top:8px;}
+
+  /* callouts */
+  .call{display:flex; gap:8px; border-radius:7px; padding:8px 11px; margin-top:10px; font-size:9.5pt; break-inside:avoid;}
+  .call .ic{font-weight:800; flex:none;}
+  .call.warn{background:var(--yellow-bg); color:var(--yellow-ink);}
+  .call.imp{background:var(--red-bg); color:var(--red-ink);}
+  .call b{color:inherit;}
+
+  /* finish */
+  .finish{margin-top:18px; background:var(--green-bg); border:1px solid #a8d5b5; border-radius:10px; padding:14px 16px; break-inside:avoid;}
+  .finish h2{font-size:13pt; color:#0d652d;}
+  .finish ol{margin:8px 0 0; padding-left:18px; font-size:10pt;}
+  .finish ol li{margin:5px 0;}
+  .finish b{color:var(--ink);}
+
+  footer{margin-top:20px; padding-top:12px; border-top:1px solid var(--line); font-size:8.5pt; color:var(--grey-light);}
+
+  /* ---------- print ---------- */
+  @page{ size:A4; margin:14mm; }
+  @media print{
+    body{background:#fff;}
+    .page{max-width:none; margin:0; padding:0; box-shadow:none;}
+    .howto{display:none !important;}
+    .imgnote{display:none !important;}
+    a{color:var(--ink); text-decoration:none;}
+  }
+  @media (max-width:640px){
+    .choice,.subgrid{grid-template-columns:1fr;}
+    .prereq{columns:1;}
+  }
+</style>
+</head>
+<body>
+
+  <!-- Screen-only: how to turn this into a PDF. Hidden when printed. -->
+  <div class="howto no-print">
+    <b>To save this as a PDF:</b> press <kbd>Ctrl</kbd> + <kbd>P</kbd> (Windows) or <kbd>Cmd</kbd> + <kbd>P</kbd> (Mac) &rarr; set <b>Destination</b> to <b>Save as PDF</b> &rarr; <b>Save</b>. Tip: turn on “Background graphics” for the colour accents. This banner won't appear in the PDF.
+  </div>
+
+  <div class="page">
+
+    <!-- HEADER -->
+    <header>
+      <span class="eyebrow">Google Play Console · Developer onboarding</span>
+      <h1>How to open a Google Play developer account</h1>
+      <p class="lede">A short, click-by-click walkthrough of every screen Google shows — from choosing an account type to paying the one-time fee — so you can start publishing on the Play Store.</p>
+      <ul class="facts">
+        <li class="fee"><span>One-time fee</span><b>US$25 ≈ ₹2,382</b></li>
+        <li><span>Time to fill in</span><b>~15 min</b></li>
+        <li><span>Setup steps</span><b>10 + payment</b></li>
+        <li><span>After paying</span><b>ID verification</b></li>
+      </ul>
+    </header>
+
+    <hr class="rule">
+
+    <!-- PREREQUISITES -->
+    <section>
+      <h2 class="sec">Before you start</h2>
+      <p class="sec-sub">Have these ready and the form takes about fifteen minutes.</p>
+      <ul class="prereq">
+        <li><b>A Google Account</b> — it permanently owns the developer account.</li>
+        <li><b>An email address</b> — shown publicly on your profile; verified with a code.</li>
+        <li><b>A contact phone</b> — private to Google; include your country code (+91).</li>
+        <li><b>A credit/debit card</b> — for the one-time US$25 fee (≈ ₹2,382 in India).</li>
+        <li><b>A valid photo ID</b> — for the identity check required before publishing.</li>
+      </ul>
+    </section>
+
+    <hr class="rule">
+
+    <!-- ACCOUNT TYPE -->
+    <section>
+      <h2 class="sec">Choose your account type</h2>
+      <p class="sec-sub">This is the only fork. After it, both paths follow the same steps.</p>
+      <div class="choice">
+        <div class="opt self">
+          <h3><span class="tag">B</span> Yourself</h3>
+          <ul>
+            <li>For an <b>individual</b>, hobbyist or student</li>
+            <li><b>No D-U-N-S number</b> needed — the quicker route</li>
+            <li>Can still earn money and invite others</li>
+          </ul>
+        </div>
+        <div class="opt org">
+          <h3><span class="tag">A</span> An organisation</h3>
+          <ul>
+            <li>For a company, nonprofit, government or school</li>
+            <li>Requires a <b>D-U-N-S number</b> (mandatory)</li>
+            <li>Needed for finance, health, VPN &amp; government apps</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule">
+
+    <!-- STEP 1 -->
+    <section class="step">
+      <div class="step-head"><span class="num">1</span><h3>Choose an account type</h3></div>
+      <div class="action"><span class="arw">&rarr;</span><span>Pick <b>An organisation</b> or <b>Yourself</b>, then click <b>Get started</b>.</span></div>
+      <ul class="notes">
+        <li>The Google account shown top-left <b>will own this account permanently</b> — pick the right one now.</li>
+      </ul>
+      <figure>
+        <img src="../uploads/Screenshot%202026-08-26%20154548.png" alt="Choose an account type page with two options: An organisation and Yourself, each with a Get started link.">
+        <figcaption><span class="arw">&rarr;</span> Two options — read both, then click <b>Get started</b> under the one that fits.</figcaption>
+        <div class="imgnote">Screenshot not showing? Open this file in a browser (Chrome/Edge) with the “uploads” folder kept beside it.</div>
+      </figure>
+
+      <div class="subgrid">
+        <div class="sub org">
+          <h4><span class="tag">A</span> If you chose “An organisation”</h4>
+          <figure>
+            <img src="../uploads/Screenshot%202026-08-26%20154641.png" alt="Organisation type dropdown: company/business, nonprofit, government, educational institution.">
+            <figcaption>Pick your <b>organisation type</b> from the dropdown.</figcaption>
+          </figure>
+          <figure>
+            <img src="../uploads/Screenshot%202026-08-26%20154651.png" alt="Organisation requirements text explaining a D-U-N-S number is mandatory.">
+            <figcaption><b>Key requirement:</b> a <b>D-U-N-S number</b> is mandatory.</figcaption>
+          </figure>
+        </div>
+        <div class="sub self">
+          <h4><span class="tag">B</span> If you chose “Yourself”</h4>
+          <figure>
+            <img src="../uploads/Screenshot%202026-08-26%20154706.png" alt="Yourself option for individuals, hobbyists and students, with a Get started link.">
+            <figcaption>Confirm it's personal, then <b>Get started</b>. No D-U-N-S needed.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 2 -->
+    <section class="step">
+      <div class="step-head"><span class="num">2</span><h3>Review “What you'll need”</h3></div>
+      <div class="action"><span class="arw">&rarr;</span><span>Read the checklist, then click <b>Continue</b>.</span></div>
+      <ul class="notes">
+        <li>A <b>public email</b>, a <b>private contact phone &amp; email</b>, and a <b>payment method</b> for the US$25 fee.</li>
+      </ul>
+      <figure>
+        <img src="../uploads/Screenshot%202026-08-26%20154721.png" alt="What you'll need page listing an email, a contact phone and email, and a form of payment for the one-time US$25 fee.">
+        <figcaption><span class="arw">&rarr;</span> Click <b>Continue</b> (bottom-right).</figcaption>
+      </figure>
+    </section>
+
+    <!-- STEP 3 -->
+    <section class="step">
+      <div class="step-head"><span class="num">3</span><h3>Android developer identity</h3></div>
+      <div class="action"><span class="arw">&rarr;</span><span>Nothing to type — just read and click <b>Next</b>.</span></div>
+      <ul class="notes">
+        <li>Google reuses your <b>legal name, address and website</b> to meet Android verification requirements.</li>
+      </ul>
+      <figure>
+        <img src="../uploads/Screenshot%202026-08-26%20154733.png" alt="Android developer verification page reusing legal name, legal address and website.">
+        <figcaption><span class="arw">&rarr;</span> Click <b>Next</b>.</figcaption>
+      </figure>
+    </section>
+
+    <!-- STEP 4 -->
+    <section class="step">
+      <div class="step-head"><span class="num">4</span><h3>Developer name</h3></div>
+      <div class="action"><span class="arw">&rarr;</span><span>Type the <b>public developer name</b> shown under your apps, then <b>Next</b>.</span></div>
+      <ul class="notes">
+        <li>This is a single text box (no screenshot). Use your own name or brand — you can change it later.</li>
+      </ul>
+    </section>
+
+    <!-- STEP 5 -->
+    <section class="step">
+      <div class="step-head"><span class="num">5</span><h3>Link a payments profile</h3></div>
+      <div class="action"><span class="arw">&rarr;</span><span>Click <b>Create or select payments profile</b>, complete it, then <b>Next</b>.</span></div>
+      <ul class="notes">
+        <li>A Google payments profile confirms your legal name and address. <b>Next</b> stays greyed out until it's linked.</li>
+      </ul>
+      <figure>
+        <img src="../uploads/Screenshot%202026-08-26%20181857.png" alt="Link a payments profile page with a Create or select payments profile link.">
+        <figcaption><span class="arw">&rarr;</span> Click <b>Create or select payments profile</b>.</figcaption>
+      </figure>
+    </section>
+
+    <!-- STEP 6 -->
+    <section class="step">
+      <div class="step-head"><span class="num">6</span><h3>Public Developer Profile</h3></div>
+      <div class="action"><span class="arw">&rarr;</span><span>Confirm your details, set the public email, tick the box, then <b>Next</b>.</span></div>
+      <ul class="notes">
+        <li>Your <b>legal name, country and developer email</b> are shown publicly on Google Play.</li>
+      </ul>
+      <figure>
+        <img src="../uploads/Screenshot%202026-08-26%20182002.png" alt="Public Developer Profile page with legal name, country, verified developer email and an acknowledgement checkbox.">
+        <figcaption><span class="arw">&rarr;</span> Tick the acknowledgement, then <b>Next</b>.</figcaption>
+      </figure>
+    </section>
+
+    <!-- STEP 7 -->
+    <section class="step">
+      <div class="step-head"><span class="num">7</span><h3>About you</h3></div>
+      <div class="action"><span class="arw">&rarr;</span><span>Optionally add your experience, answer the “other accounts” question, then <b>Next</b>.</span></div>
+      <ul class="notes">
+        <li>The experience box is <b>private</b> (only you see it). Say whether you've used other Google Accounts for Play Console.</li>
+      </ul>
+      <figure>
+        <img src="../uploads/Screenshot%202026-08-26%20182013.png" alt="About you page with a private experience text box and a question about other Google Accounts.">
+        <figcaption><span class="arw">&rarr;</span> Fill in or skip, then <b>Next</b>.</figcaption>
+      </figure>
+    </section>
+
+    <!-- STEP 8 -->
+    <section class="step">
+      <div class="step-head"><span class="num">8</span><h3>Apps</h3></div>
+      <div class="action"><span class="arw">&rarr;</span><span>Answer a few planning questions, then <b>Next</b>.</span></div>
+      <ul class="notes">
+        <li>How many apps, whether you plan to earn money, and any special categories. These answers <b>don't limit</b> what you can publish.</li>
+      </ul>
+      <figure>
+        <img src="../uploads/Screenshot%202026-08-26%20182119.png" alt="Apps page with number of apps, an earning-money choice, and app-category checkboxes.">
+        <figcaption><span class="arw">&rarr;</span> Answer, then <b>Next</b>.</figcaption>
+      </figure>
+    </section>
+
+    <!-- STEP 9 -->
+    <section class="step">
+      <div class="step-head"><span class="num">9</span><h3>How Google contacts you</h3></div>
+      <div class="action"><span class="arw">&rarr;</span><span>Enter your private contact details, then <b>Next</b>.</span></div>
+      <ul class="notes">
+        <li>Contact name, email (verify it), language and <b>phone with country code</b>. All private — never shown on Google Play.</li>
+      </ul>
+      <figure>
+        <img src="../uploads/Screenshot%202026-08-26%20182208.png" alt="How Google contacts you page with contact name, verified email, preferred language and phone number.">
+        <figcaption><span class="arw">&rarr;</span> Fill the fields, then <b>Next</b>.</figcaption>
+      </figure>
+    </section>
+
+    <!-- STEP 10 -->
+    <section class="step">
+      <div class="step-head"><span class="num">10</span><h3>Accept the Terms</h3></div>
+      <div class="action"><span class="arw">&rarr;</span><span>Tick the two required agreements, then <b>Create account and pay</b>.</span></div>
+      <ul class="notes">
+        <li>Tick the <b>Developer Distribution Agreement</b> (confirms you're 18+) and the <b>Play Console Terms of Service</b>. The other two boxes are optional.</li>
+      </ul>
+      <figure>
+        <img src="../uploads/Screenshot%202026-08-26%20182219.png" alt="Terms page with the Developer Distribution Agreement and Play Console Terms checkboxes and a Create account and pay button.">
+        <figcaption><span class="arw">&rarr;</span> Click <b>Create account and pay</b>.</figcaption>
+      </figure>
+      <div class="call imp"><span class="ic">&#9888;</span><span><b>Heads up:</b> the US$25 fee is <b>non-refundable</b> if Google can't verify your identity — make sure your legal details match your ID.</span></div>
+    </section>
+
+    <!-- STEP 11 -->
+    <section class="step">
+      <div class="step-head"><span class="num pay">₹</span><h3>Pay the one-time US$25 fee</h3></div>
+      <div class="action"><span class="arw">&rarr;</span><span>Click <b>Add credit or debit card</b>, enter your card, and complete the payment.</span></div>
+      <ul class="notes">
+        <li>It's a <b>one-time registration fee</b>, not a subscription. In India that's about <b>₹2,382</b> at ₹95.27/US$ (26 Aug 2026); the exact amount depends on the day's rate.</li>
+      </ul>
+      <figure>
+        <img src="../uploads/Screenshot%202026-08-26%20182333.png" alt="Complete your purchase dialog showing Developer Registration Fee US$25.00 and an Add credit or debit card option.">
+        <figcaption><span class="arw">&rarr;</span> <b>Developer Registration Fee — US$25.00.</b> Click <b>Add credit or debit card</b>.</figcaption>
+      </figure>
+      <figure>
+        <img src="../uploads/Screenshot%202026-08-26%20182352.png" alt="Currency converter showing 25 US dollars equals about 2381.85 Indian rupees.">
+        <figcaption>Reference: <b>US$25 ≈ ₹2,381.85</b> at ₹95.27 per dollar (26 Aug 2026).</figcaption>
+      </figure>
+    </section>
+
+    <!-- FINISH -->
+    <section class="finish">
+      <h2>You're done — what happens next</h2>
+      <ol>
+        <li><b>Payment confirms your account.</b> Once the US$25 goes through, the account is created.</li>
+        <li><b>Google verifies your identity.</b> You may upload a photo ID; this can take a few days, and you'll get an email when it's done.</li>
+        <li><b>Start publishing.</b> Open Play Console &rarr; <b>Create app</b>, add your store listing, upload your app bundle, and roll out.</li>
+      </ol>
+    </section>
+
+    <footer>
+      Steps and screenshots reflect the Google Play Console sign-up flow captured on 26 August 2026; Google occasionally updates this wizard, so a screen may look slightly different. The US$25 fee is set by Google; the rupee figure is an approximate conversion.
+    </footer>
+
+  </div>
+
+<script>
+  // If a screenshot fails to load, reveal the small "open in browser" note under it.
+  document.querySelectorAll('figure img').forEach(function(img){
+    img.addEventListener('error', function(){
+      var note = img.parentElement.querySelector('.imgnote');
+      if(note){ note.style.display='block'; }
+      img.style.display='none';
+    });
+  });
+</script>
+</body>
+</html>
