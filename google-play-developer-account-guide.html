@@ -337,7 +337,8 @@
     .stat .v small{font-size:.68rem;}
 
     .roadmap{padding:14px 12px 10px; border-radius:var(--radius-sm);}
-    .flow-pills .pill{padding:6px 10px; font-size:.78rem;}
+    .flow-pills{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px;}
+    .flow-pills .pill{padding:6px 9px; font-size:.75rem;}
     .flow-pills .pill .n{width:16px; height:16px; font-size:.62rem;}
 
     .block > h2{font-size:1.3rem;}
@@ -406,14 +407,14 @@
   @media (max-width:360px){
     .wizard{padding-right:10px; padding-left:10px; padding-bottom:48px;}
     .rail{padding-top:6px; padding-bottom:4px;}
-    .steps-nav a{min-width:46px; padding:5px 3px; font-size:.55rem;}
+    .steps-nav a{min-width:40px; padding:5px 3px; font-size:0;}
     .steps-nav .marker{width:22px; height:22px; font-size:.64rem;}
-    .steps-nav a span.lbl{max-width:44px;}
+    .steps-nav a span.lbl{display:none;}
 
     .hero h1{font-size:1.4rem;}
     .hero .lede{font-size:.85rem;}
 
-    .stat{flex-basis:100%; padding:10px;}
+    .stat{flex-basis:calc(50% - 4px); padding:10px;}
     .stat .k{font-size:.6rem;}
     .stat .v{font-size:1rem;}
 
